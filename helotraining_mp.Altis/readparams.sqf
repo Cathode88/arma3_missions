@@ -31,7 +31,7 @@ lzList = [];
 _x = 0;
 while {_x < LZCOUNT} do
 {
-	[lzList, (missionNamespace getVariable (format["lz%1", _x + 1]))] call BIS_fnc_arrayPush;
+	[lzList, (missionNamespace getVariable (format["lz_%1", _x + 1]))] call BIS_fnc_arrayPush;
 	_x = _x + 1;
 };
 
