@@ -53,7 +53,7 @@ private _taskState = "AUTOASSIGNED";
 private _assignTo = [west];
 if (!(_assignExtra isEqualTo false)) then
 {
-    _longdesc = _longdesc + format["<br/>Created for %1", _assignExtra];
+    _longdesc = _longdesc + format["<br/>Created for %1", name (_assignExtra select 0)];
     _assignTo = _assignTo + _assignExtra;
     _taskState = "CREATED";
 };
@@ -65,7 +65,7 @@ private _taskid = format["pickup_%1", lzCounter];
 [_assignTo,[_taskid],[_longdesc, _shortdesc, _shortestDesc],getPosATL _lzLocation,_taskState,(STARTPRIORITY-lzCounter),true, _taskType, true] call BIS_fnc_taskCreate;
 if (!(_assignExtra isEqualTo false)) then
 {
-    [_taskid,_assignExtra,[_longdesc, _shortdesc, _shortestDesc],getPosATL _lzLocation,"ASSIGNED"] call BIS_fnc_setTask;
+    [_taskid,_assignExtra,[_longdesc, _shortdesc, _shortestDesc],getPosATL _lzLocation,"ASSIGNED",nil,true,false] remoteExec ["BIS_fnc_setTask", _assignExtra];
 };
 taskIds pushBackUnique _taskid;
 publicVariable "taskIds";
